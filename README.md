@@ -28,7 +28,7 @@ We will use [KIND](https://github.com/kubernetes-sigs/kind/releases) to create a
 # In case any clusters already exists from previous atempts. run below:
 # kind delete cluster --name my-cluster
 
-kind create cluster --name gitops-demo --image kindest/node:v1.22.0 --config demo-cluster.yaml
+kind create cluster --name my-cluster --image kindest/node:v1.22.0 --config demo-cluster.yaml
 ```
 ## Add helm repo
 1. Run the command to add helm repo:
@@ -42,6 +42,20 @@ kind create cluster --name gitops-demo --image kindest/node:v1.22.0 --config dem
    ```bash
     helm install elasticsearch stable/elasticsearch
    ```
+    - verify installation and access to service
+
+     ```bash
+    kubectl port-forward svc/elasticsearch-client 9200
+     ```
+    ```bash
+    http://localhost:9200/
+   ```
+    - verify elastic search indexes
+
+     ```bash
+    http://localhost:9200/_cat/indices?v
+     ```
+
 3. install fluentd as daemonset:
     - first we will create nessary Cluster role,serviceaccount and rolebinding objects
 
@@ -57,4 +71,14 @@ kind create cluster --name gitops-demo --image kindest/node:v1.22.0 --config dem
 
    ```bash
     helm install kibana stable/kibana -f kibana-values.yaml
+   ```  
+- verify installation and access to service
+
+    ```bash
+    kubectl port-forward svc/kibana 444:443
+     ```
+ 5. Run Simple application to generate dummy logs
+
+   ```bash
+ kubectl apply -f counter.yaml
    ```  
