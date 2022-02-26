@@ -1,0 +1,87 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+    - |
+      kind: InitConfiguration
+      nodeRegistration:
+        kubeletExtraArgs:
+          node-labels: "ingress-ready=true"
+    extraPortMappings:
+    - containerPort: 443
+      hostPort: 443
+    - containerPort: 80
+      hostPort: 80
+    - containerPort: 30080
+      hostPort: 30080
+    - containerPort: 30081
+      hostPort: 30081
+    - containerPort: 30082
+      hostPort: 30082
+    - containerPort: 30083
+      hostPort: 30083  
+    - containerPort: 30084
+      hostPort: 30084
+    - containerPort: 30085
+      hostPort: 30085
+    - containerPort: 30086
+      hostPort: 30086
+    - containerPort: 30087
+      hostPort: 30087
+    - containerPort: 30088
+      hostPort: 30088
+    - containerPort: 30089
+      hostPort: 30089
+  - role: worker
+    extraPortMappings:
+    - containerPort: 443
+      hostPort: 31443
+    - containerPort: 80
+      hostPort: 8180
+    - containerPort: 30080
+      hostPort: 31080
+    - containerPort: 30081
+      hostPort: 31081
+    - containerPort: 30082
+      hostPort: 31082
+    - containerPort: 30083
+      hostPort: 31083  
+    - containerPort: 30084
+      hostPort: 31084
+    - containerPort: 30085
+      hostPort: 31085
+    - containerPort: 30086
+      hostPort: 31086
+    - containerPort: 30087
+      hostPort: 31087
+    - containerPort: 30088
+      hostPort: 31088
+    - containerPort: 30089
+      hostPort: 31089
+  - role: worker
+    extraPortMappings:
+    - containerPort: 443
+      hostPort: 32443
+    - containerPort: 80
+      hostPort: 8280
+    - containerPort: 30080
+      hostPort: 32080
+    - containerPort: 30081
+      hostPort: 32081
+    - containerPort: 30082
+      hostPort: 32082
+    - containerPort: 30083
+      hostPort: 32083  
+    - containerPort: 30084
+      hostPort: 32084
+    - containerPort: 30085
+      hostPort: 32085
+    - containerPort: 30086
+      hostPort: 32086
+    - containerPort: 30087
+      hostPort: 32087
+    - containerPort: 30088
+      hostPort: 32088
+    - containerPort: 30089
+      hostPort: 32089
