@@ -16,6 +16,7 @@ we will follow below steps for this demo :
 
 - install elastic search using helm 
 - Install and config [fluentd](https://www.fluentd.org/).  
+- setup kibara to visualize metrics 
 
 
 
